@@ -57,7 +57,7 @@ class SongsController < ApplicationController
       @song.artist = Artist.create(name: params[:song][:artist])
       @song.update_all #These two lines of code functionally the same the above
     end
-    binding.pry
+
     @song.genres = params[:song][:genres]
     @song.update_all
 
