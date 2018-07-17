@@ -57,6 +57,7 @@ class SongsController < ApplicationController
       @song.artist = Artist.create(name: params[:song][:artist])
       @song.update_all #These two lines of code functionally the same the above
     end
+    binding.pry
     #@genre = Genre.find(params[:song][:genres]).first
 
     erb :'songs/show'
