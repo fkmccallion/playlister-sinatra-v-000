@@ -59,7 +59,7 @@ class SongsController < ApplicationController
     end
 
     @song.genres = params[:song][:genres]
-    @song.update
+    @song.save
 
     erb :'songs/show'
   end
