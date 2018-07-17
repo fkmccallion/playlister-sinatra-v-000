@@ -58,7 +58,8 @@ class SongsController < ApplicationController
       @song.update_all #These two lines of code functionally the same the above
     end
     binding.pry
-    #@genre = Genre.find(params[:song][:genres]).first
+    @song.genres = params[:song][:genres]
+    @song.update_all
 
     erb :'songs/show'
   end
