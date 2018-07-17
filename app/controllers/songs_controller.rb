@@ -48,11 +48,19 @@ class SongsController < ApplicationController
 
   post '/songs/:slug' do
     @song = Song.find_by_slug(params[:slug])
-        @song.update(params[:song])
-        @song.artist = Artist.find_or_create_by(name: params[:artist][:name])
-        @song.save
 
+    if !params[:song][:artist].empty?
+      #@artist = Artist.create(name: params[:song][:artist])
+      #@artist.save
+      #@song.artist = @artist
+      #@song.save
+      @song.artist = Artist.create(name: params[:song][:artist])
+      @song.update_all #These two lines of code functionally the same the above
+    end
 
-        redirect("/songs/#{@song.slug}")
+    @song.genres = params[:song][:genres]
+    @song.save
+
+    redirect("/songs/#{@song.slug}")
   end
 end
