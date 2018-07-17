@@ -61,6 +61,6 @@ class SongsController < ApplicationController
     @song.genres = params[:song][:genres]
     @song.save
 
-    erb :'songs/show'
+    redirect("/songs/#{@song.slug}")
   end
 end
