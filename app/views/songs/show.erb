@@ -1,5 +1,8 @@
+Successfully created song. <!-- Add Flash cababilities later -->
+Successfully updated song. <!-- Add Flash cababilities later -->
+
 <h1><%= @song.name %></h1>
 
-Artist: <a href="/artists/<%= @artist.slug %>"><%= @artist.name %></a>
+Artist: <a href="/artists/<%= @song.artist.slug %>"><%= @song.artist.name %></a>
 <br />
 Genre: <a href="/genres/<%= @genre.slug %>"><%= @genre.name %>

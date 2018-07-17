@@ -7,9 +7,26 @@ class SongsController < ApplicationController
   end
 
   get '/songs/new' do
-    @artist = Artist.all
+    @genres = Genre.all
 
     erb :'songs/new'
+  end
+
+  post '/songs/new' do
+    Artist.all.each do |a|
+      if a.name == params[:song][:artist]
+        @artist = a
+      end
+    end
+
+    if !Artist.all.include?(@artist)
+      @artist = Artist.create(name: params[:song][:artist])
+    end
+
+    @genres = Genre.find(params[:genres])
+    @song = Song.create(name: params[:song][:name], genres: @genres, artist_id: @artist.id)
+
+    redirect to "/songs/#{@song.slug}"
   end
 
   get '/songs/:slug' do
@@ -22,8 +39,21 @@ class SongsController < ApplicationController
     erb :'songs/show'
   end
 
-  post 'songs/new' do
+  get '/songs/:slug/edit' do
+    @song = Song.find_by_slug(params[:slug])
+    @genres = Genre.all
 
+    erb:'songs/edit'
   end
 
+  post '/songs/:slug' do
+    @song = Song.find_by_slug(params[:slug])
+
+    if !params[:song][:artist].empty?
+      @song.artist = Artist.create(name: params[:song][:artist])
+    end
+    #@genre = Genre.find(params[:song][:genres]).first
+
+    erb :'songs/show'
+  end
 end
