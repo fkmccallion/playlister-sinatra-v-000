@@ -55,7 +55,7 @@ class SongsController < ApplicationController
       #@song.artist = @artist
       #@song.save
       @song.artist = Artist.create(name: params[:song][:artist])
-      @song.update_all
+      @song.update_all #These two lines of code functionally the same the above
     end
     #@genre = Genre.find(params[:song][:genres]).first
 
