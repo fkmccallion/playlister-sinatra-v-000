@@ -58,8 +58,8 @@ class SongsController < ApplicationController
       @song.update_all #These two lines of code functionally the same the above
     end
 
-    @song.genres = params[:song][:genres]
-    @song.save
+    #@song.genres = params[:song][:genres]
+    #@song.save
 
     erb :'songs/show'
   end
