@@ -51,6 +51,7 @@ class SongsController < ApplicationController
 
     if !params[:song][:artist].empty?
       @song.artist = Artist.create(name: params[:song][:artist])
+      @song.save
     end
     #@genre = Genre.find(params[:song][:genres]).first
 
